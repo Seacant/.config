@@ -137,7 +137,7 @@ lua << EOF
 --     local opts = {}
 -- 
 --     -- (optional) Customize the options passed to the server
---     -- if server.name == "tsserver" then
+--     -- if server.name == "ts_ls" then
 --     --     opts.root_dir = function() ... end
 --     -- end
 -- 
@@ -222,7 +222,7 @@ local on_attach = function(client, bufnr)
 end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "solargraph", "tsserver" }
+local servers = { "solargraph", "ts_ls" }
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = on_attach,
