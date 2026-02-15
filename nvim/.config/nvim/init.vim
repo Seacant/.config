@@ -28,11 +28,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'luukvbaal/nnn.nvim'
   Plug 'mhinz/vim-startify'
   Plug 'windwp/nvim-ts-autotag'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'neovim/nvim-lspconfig'
   Plug 'tpope/vim-surround'
   Plug 'williamboman/nvim-lsp-installer'
-  Plug 'github/copilot.vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-repeat'
@@ -103,18 +101,6 @@ let g:airline_symbols.linenr = ''
   nmap <leader>b :Buffers<CR>
 " }
 
-" Tree Sitter
-"   - Auto Close Tag
-" {
-lua << EOF
-  require'nvim-treesitter.configs'.setup {
-    autotag = {
-      enable = true
-    }
-  }
-EOF
-" }
-
 " File Manager
 " {
 lua << EOF
@@ -180,7 +166,7 @@ else
   set signcolumn=yes
 endif
 
-" Solargraph Config
+" LSP Config
 " {
 lua << EOF
 local nvim_lsp = require('lspconfig')
@@ -222,9 +208,9 @@ local on_attach = function(client, bufnr)
 end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "solargraph", "ts_ls" }
+local servers = { "ts_ls" }
 for _, lsp in ipairs(servers) do
-  require('lspconfig')[lsp].setup {
+  vim.lsp.config[lsp] = {
     on_attach = on_attach,
     flags = {}
   }
