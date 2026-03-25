@@ -2,7 +2,7 @@
 
 set -e
 
-COMMON_PACKAGES="nvim ghostty"
+COMMON_PACKAGES="nvim ghostty zsh"
 MAC_PACKAGES=""
 LINUX_PACKAGES="hypr"
 
