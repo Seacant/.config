@@ -1,0 +1,7 @@
+font-family = Monaspace Xenon
+theme = synthwave
+shell-integration = zsh
+copy-on-select = clipboard
+palette = 8=#665660
+macos-auto-secure-input = false
+macos-titlebar-style = transparent
