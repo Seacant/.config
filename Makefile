@@ -1,7 +1,8 @@
 PLUG_PATH=$(HOME)/.local/share/nvim/site/autoload/plug.vim
 
 install: plug
-	stow --verbose --target=$$HOME --restow */
+	@bash ./prompt-install.sh
+	# stow --verbose --target=$$HOME --restow */
 
 plug:
 	@if [ ! -f "$(PLUG_PATH)" ]; then \
