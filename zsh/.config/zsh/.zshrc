@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH=${ZSH:-"$HOME/.oh-my-zsh"}
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="agnoster"
@@ -42,32 +42,6 @@ function in() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Direnv
-_direnv_hook() {
-  trap -- '' SIGINT;
-  eval "$("/opt/homebrew/bin/direnv" export zsh)";
-  trap - SIGINT;
-}
-typeset -ag precmd_functions;
-if [[ -z "${precmd_functions[(r)_direnv_hook]+1}" ]]; then
-  precmd_functions=( _direnv_hook ${precmd_functions[@]} )
-fi
-typeset -ag chpwd_functions;
-if [[ -z "${chpwd_functions[(r)_direnv_hook]+1}" ]]; then
-  chpwd_functions=( _direnv_hook ${chpwd_functions[@]} )
-fi
-
-# Deno
-# Add deno completions to search path
-if [[ ":$FPATH:" != *":/Users/fletch/.zsh/completions:"* ]]; then export FPATH="/Users/fletch/.zsh/completions:$FPATH"; fi
-export DENO_INSTALL="/Users/fletch/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-. "/Users/fletch/.deno/env"
-
-# Initialize zsh completions (added by deno install script)
-autoload -Uz compinit
-compinit
 
 # Add local scripts to path
 export PATH="$HOME/.local/bin:$PATH"

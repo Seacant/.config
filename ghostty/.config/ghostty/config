@@ -1,5 +1,5 @@
 font-family = Monaspace Xenon
-theme = synthwave
+# theme = synthwave
 shell-integration = zsh
 copy-on-select = clipboard
 palette = 8=#665660
